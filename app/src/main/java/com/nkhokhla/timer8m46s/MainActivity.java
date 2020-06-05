@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.util.Log;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
@@ -19,12 +20,14 @@ public class MainActivity extends AppCompatActivity {
     private TextView mTextViewCountDown;
 //    private Button mButtonSet;
     private Button mButtonStartPause;
+    int i =0;
 //    private Button mButtonReset;
     private CountDownTimer mCountDownTimer;
     private boolean mTimerRunning;
     private long mStartTimeInMillis;
     private long mTimeLeftInMillis;
     private long mEndTime;
+    private TextView text;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,6 +36,7 @@ public class MainActivity extends AppCompatActivity {
         mTextViewCountDown = findViewById(R.id.text_view_countdown);
 //        mButtonSet = findViewById(R.id.button_set);
         mButtonStartPause = findViewById(R.id.button_start_pause);
+        text = (TextView) findViewById(R.id.textView);
 //        mButtonReset = findViewById(R.id.button_reset);
 //        mButtonSet.setOnClickListener(new View.OnClickListener() {
 //            @Override
@@ -78,12 +82,15 @@ public class MainActivity extends AppCompatActivity {
         mCountDownTimer = new CountDownTimer(mTimeLeftInMillis, 1000) {
             @Override
             public void onTick(long millisUntilFinished) {
+                mButtonStartPause.setVisibility(View.INVISIBLE);
                 mTimeLeftInMillis = millisUntilFinished;
                 updateCountDownText();
             }
             @Override
             public void onFinish() {
                 mTimerRunning = false;
+                Log.d("finish", String.valueOf(i));
+                mButtonStartPause.setVisibility(View.VISIBLE);
                 updateWatchInterface();
             }
         }.start();
@@ -101,6 +108,98 @@ public class MainActivity extends AppCompatActivity {
         updateWatchInterface();
     }
     private void updateCountDownText() {
+        Log.d("chas", String.valueOf(i));
+        if (i == 3){
+            text.animate().alpha(1).setDuration(3000);
+        }
+        if (i == 5){
+            text.animate().alpha(0).setDuration(3000);
+        }
+        if (i == 9){
+            text.setText("“Please man.”");
+            text.animate().alpha(1).setDuration(3000);
+        }
+        if (i ==11){
+            text.animate().alpha(0).setDuration(3000);
+        }
+        if (i == 15){
+            text.setText("“I can't breathe.”");
+            text.animate().alpha(1).setDuration(3000);
+        }
+        if (i == 17){
+            text.animate().alpha(0).setDuration(3000);
+        }
+        if (i == 21){
+            text.setText("“I'm about to die.”");
+            text.animate().alpha(1).setDuration(3000);
+        }
+        if (i ==23){
+            text.animate().alpha(0).setDuration(3000);
+        }
+        if (i == 27){
+            text.setText("“I can't breathe. I can't breathe.”");
+            text.animate().alpha(1).setDuration(3000);
+        }
+        if (i == 29){
+            text.animate().alpha(0).setDuration(3000);
+        }
+        if (i == 33){
+            text.setText("(Still kneeling)“Get in the car!”");
+            text.animate().alpha(1).setDuration(3000);
+        }
+        if (i == 35){
+            text.animate().alpha(0).setDuration(3000);
+        }
+        if (i == 39){
+            text.setText("(Still kneeling)“Get up, get in the car!“");
+            text.animate().alpha(1).setDuration(3000);
+        }
+        if (i == 41){
+            text.animate().alpha(0).setDuration(3000);
+        }
+        if (i == 45){
+            text.setText("(Still kneeling)“Get up, and get in the car!“");
+            text.animate().alpha(1).setDuration(3000);
+        }
+        if (i == 47){
+            text.animate().alpha(0).setDuration(3000);
+        }
+        if (i == 51){
+            text.setText("An ambulance is called.");
+            text.animate().alpha(1).setDuration(3000);
+        }
+        if (i == 53){
+            text.animate().alpha(0).setDuration(3000);
+        }
+        if (i ==55){
+            text.setText("“Everything hurts. Some water or something, please“");
+            text.animate().alpha(1).setDuration(3000);
+        }
+        if (i == 59){
+            text.animate().alpha(0).setDuration(3000);
+        }
+        if (i ==61){
+            text.setText("“I can't breathe officer.“\n" +"“Shut up.“\n" +"“They gonna kill me.“\n");
+            text.animate().alpha(1).setDuration(3000);
+        }
+        if (i ==63){
+            text.animate().alpha(0).setDuration(3000);
+        }
+        if (i == 67){
+            text.setText("“He's not responsive right now!“ -bystander");
+            text.animate().alpha(1).setDuration(3000);
+        }
+        if (i == 69){text.animate().alpha(0).setDuration(3000);}
+        if (i == 73){
+            text.setText("After 5 minutes and 50 seconds, George Floyd becomes unresponsive.");
+            text.animate().alpha(1).setDuration(3000);
+        }
+        if (i == 75){
+            text.animate().alpha(0).setDuration(3000);
+        }
+        if (i == 79){
+            text.setText("“He's not fucking moving!“ -bystander");
+        }
         int hours = (int) (mTimeLeftInMillis / 1000) / 3600;
         int minutes = (int) ((mTimeLeftInMillis / 1000) % 3600) / 60;
         int seconds = (int) (mTimeLeftInMillis / 1000) % 60;
@@ -109,6 +208,7 @@ public class MainActivity extends AppCompatActivity {
                     "%02d:%02d", minutes, seconds);
 
         mTextViewCountDown.setText(timeLeftFormatted);
+        i++;
     }
     private void updateWatchInterface() {
         if (mTimerRunning) {

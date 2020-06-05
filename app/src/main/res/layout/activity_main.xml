@@ -6,6 +6,8 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity"
     android:background="@color/colorPrimaryDark">
+
+
     <TextView
         android:id="@+id/text_view_countdown"
         android:layout_width="wrap_content"
@@ -21,6 +23,19 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/text_view_countdown"
         android:layout_centerHorizontal="true"
+        android:visibility="visible"
         android:text="start" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:alpha="0"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:layout_below="@+id/button_start_pause"
+        android:text="“Please, please, please! I can't breathe!”"
+        android:textColor="#FFFFFF"
+        android:textStyle="italic" />
 
 </RelativeLayout >
